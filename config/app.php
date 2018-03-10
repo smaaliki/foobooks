@@ -2,6 +2,7 @@
 
 return [
 
+    'supportEmail' => 'smaaliki@hotmail.com',
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -13,7 +14,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'Foobooks',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +53,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://foobooks.ulaila.com'),
 
     /*
     |--------------------------------------------------------------------------
