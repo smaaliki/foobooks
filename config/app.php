@@ -3,16 +3,27 @@
 return [
 
     'supportEmail' => 'smaaliki@hotmail.com',
+
+    'nav' => [
+        '/books' => 'Books',
+        '/books/create' => 'New Book',
+        '/books/search' => 'Search',
+        '/trivia' => 'Trivia',
+        '/practice' => 'Practice',
+        '/about' => 'About',
+        '/contact' => 'Contact',
+    ],
+
     /*
-    |--------------------------------------------------------------------------
-    | Application Name
-    |--------------------------------------------------------------------------
-    |
-    | This value is the name of your application. This value is used when the
-    | framework needs to place the application's name in a notification or
-    | any other location as required by the application or its packages.
-    |
-    */
+       |--------------------------------------------------------------------------
+       | Application Name
+       |--------------------------------------------------------------------------
+       |
+       | This value is the name of your application. This value is used when the
+       | framework needs to place the application's name in a notification or
+       | any other location as required by the application or its packages.
+       |
+       */
 
     'name' => 'Foobooks',
 

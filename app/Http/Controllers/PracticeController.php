@@ -7,9 +7,78 @@ use Config;
 use App;
 use Debugbar;
 use IanLChapman\PigLatinTranslator\Parser;
+use Carbon\Carbon;
+use App\Book;
 
 class PracticeController extends Controller
 {
+
+    public function practice10()
+    {
+        $result = Book::count();
+        dump('There are '.$result.' books');
+
+        $books = Book::orderBy('id','desc')->take(2)->get();
+        dump($books->toArray());
+    }
+    public function practice9()
+    {
+        # First get a book to update
+        $book = Book::where('author', '=', 'F. Scott Fitzgerald')->first();
+
+        if (!$book) {
+            dump("Book not found, can't update.");
+        } else {
+            # Change some properties
+            $book->title = 'The Really Great Gatsby';
+            $book->published_year = '2025';
+            # Save the changes
+            $book->save();
+            dump('Update complete; check the database to confirm the update worked.');
+        }
+    }
+    public function practice8()
+    {
+        $books = Book::where('title', 'LIKE', '%Harry Potter%')->get();
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+
+    public function practice7()
+    {
+        $book = new Book();
+        $books = $book->where('title', 'LIKE', '%samers%')->get();
+        if ($books->isEmpty()) {
+            dump('No matches found');
+        } else {
+            foreach ($books as $book) {
+                dump($book->title);
+            }
+        }
+    }
+
+    public function practice6()
+    {
+        # Instantiate a new Book Model object
+        $book = new Book();
+        # Set the properties
+        # Note how each property corresponds to a field in the table
+        $book->title = 'Shine';
+        $book->author = 'Ned HAlowell';
+        $book->published_year = 2009;
+        $book->cover_url = 'http://prodimage.images-bn.com/pimages/9780590353427_p0_v1_s484x700.jpg';
+        $book->purchase_url = 'http://www.barnesandnoble.com/w/harry-potter-and-the-sorcerers-stone-j-k-rowling/1100036321?ean=9780590353427';
+        # Invoke the Eloquent `save` method to generate a new row in the
+        # `books` table, with the above data
+        $book->save();
+        dump('Added: ' . $book->title);
+    }
+
     public function practice5()
     {
         $translator = new Parser();
@@ -37,7 +106,6 @@ class PracticeController extends Controller
         echo Config::get('app.supportEmail');
         echo config('app.supportEmail');
         dump(config('database.connections.mysql'));
-        dump( config('auth.guards'));
     }
 
     /**
@@ -69,6 +137,7 @@ class PracticeController extends Controller
     public function index($n = null)
     {
         $methods = [];
+
         # If no specific practice is specified, show index of all available methods
         if (is_null($n)) {
             foreach (get_class_methods($this) as $method) {
